@@ -24,6 +24,9 @@ $(document).ready(function(){
         addResultHeader();
         var query = $('#search-query').val();
         // TODO 1: Call searchFoursquare with the right parameters
+        searchFoursquare(query, googleLatLon, function(response){
+            console.log(response);
+        });
     });
 });
 
@@ -35,7 +38,18 @@ $(document).ready(function(){
 //   callback: single-parameter function that processes the search results.
 function searchFoursquare(query, latLon, callback) {
     // TODO 2: query the fourquare server here, using jQuery's $.get() function.
+
+var query = "coffee shop";
+var protocol = "https://";
+var hostname = "api.foursquare.com";
+var path = "/v2/venues/search";
+var parameters = "?client_id=EQ124X2XB55O5STAT323FYVCLS3N1XOSGT50AWFSYLXHUZ4H&client_secret=MNA04GQN1IYIP3ZRKBPYHXQKA42UKXPENUJ1NYLIFNY3J04Z&v=20160126&ll=40.74138576966485,-74.00251216940646" + query;
+var url = protocol + hostname + path + parameters;
 }
+
+$.get(url, function(response){
+  console.log(response.data[0].url);
+});
 
 // Clears the html result elements, so you can then populate them with fresh results.
 function clearResults() {
